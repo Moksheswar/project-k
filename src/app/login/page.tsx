@@ -42,7 +42,7 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful");
-      router.push("/dashboard");
+      router.push("/home");
     } catch (err: any) {
       toast.error(getLoginErrorMessage(err.code));
     } finally {
