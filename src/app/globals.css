@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+/* ===== CUSTOM THEME ===== */
+:root {
+  --background: #1f1f1f;     /* Page background */
+  --card-bg: #ffffff;       /* Login card white */
+
+  --color-primary: #03471c;       /* Main green */
+  --color-primary-hover: #046d2b; /* Slightly lighter hover */
+
+  --color-text-main: #03471c;
+  --color-text-secondary: #4b5563;
+
+  --color-input-bg: #f1f5f9;
+  --color-input-border: #d1d5db;
+}
+
+body {
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tailwind v4 theme mapping */
+@theme inline {
+  --color-background: var(--background);
+  --color-primary: var(--color-primary);
+}
+
+
+/* @import "tailwindcss";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -23,4 +52,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
