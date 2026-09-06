@@ -64,7 +64,8 @@ export default function LoginPage() {
 
   return (
     <div
-      className="h-screen w-screen bg-no-repeat flex items-center justify-end pr-[8%] overflow-hidden"
+      className="min-h-screen w-full bg-no-repeat flex items-center justify-center px-4 py-6
+                  md:h-screen md:w-screen md:justify-end md:px-0 md:py-0 md:pr-[8%] md:overflow-hidden"
       style={{
         backgroundImage: "url('/images/login-background.jpg')",
         backgroundSize: "100% 100%",
@@ -72,8 +73,8 @@ export default function LoginPage() {
       }}
     >
       {/* Login Card */}
-      <div className="w-full max-w-[460px] bg-white/60 backdrop-blur-[2px] rounded-[32px] px-8 md:px-10 py-8 relative -left-16">
-
+      <div className="w-full max-w-[400px] bg-white/90 backdrop-blur-[4px] rounded-[24px] px-5 py-6
+          md:max-w-[460px] md:bg-white/60 md:backdrop-blur-[2px] md:rounded-[32px] md:px-10 md:py-8 md:relative md:-left-16">
         {/* Welcome */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-[#004d32]">
@@ -150,7 +151,7 @@ export default function LoginPage() {
           disabled={loading}
           className="
             w-full
-            h-14
+            h-12 md:h-14
             bg-[#007a45]
             hover:bg-[#006238]
             disabled:opacity-60
@@ -177,7 +178,7 @@ export default function LoginPage() {
           disabled={loading}
           className="
             w-full
-            h-14
+            h-12 md:h-14
             border
             border-[#007a45]
             text-[#006b3c]
