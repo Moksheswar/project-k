@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { User } from "firebase/auth";
+import Link from "next/link";
 import Sidebar from "./Sidebar";
 
 export default function Header({ user }: { user: User }) {
@@ -11,33 +12,56 @@ export default function Header({ user }: { user: User }) {
 
   return (
     <>
-      <header className="flex justify-between items-center px-6 py-4 bg-white shadow-sm">
+      <header className="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
 
-        {/* Page Title */}
-        <h2 className="text-xl font-semibold text-[#03471c]">
-          Home
-        </h2>
+        {/* Left Side */}
+        <div className="flex items-center gap-8">
+
+          {/* Page Title */}
+          <h2 className="text-xl font-semibold text-[#03471c]">
+            Home
+          </h2>
+
+          {/* Seller Registration Tab */}
+          <Link
+            href="/seller-registration"
+            className="
+              text-sm
+              font-medium
+              text-[#03471c]
+              border-b-2
+              border-transparent
+              hover:border-[#03471c]
+              transition
+              pb-1
+            "
+          >
+            Seller Registration
+          </Link>
+
+        </div>
 
         {/* Profile Circle */}
         <div
           onClick={() => setOpen(true)}
           className="
-            w-10 
-            h-10 
-            bg-[#03471c] 
-            text-white 
-            rounded-full 
-            flex 
-            items-center 
-            justify-center 
-            cursor-pointer 
-            hover:bg-[#046d2b] 
+            w-10
+            h-10
+            bg-[#03471c]
+            text-white
+            rounded-full
+            flex
+            items-center
+            justify-center
+            cursor-pointer
+            hover:bg-[#046d2b]
             transition
             shadow-md
           "
         >
           {firstLetter}
         </div>
+
       </header>
 
       <Sidebar open={open} setOpen={setOpen} />
