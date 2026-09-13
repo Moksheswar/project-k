@@ -1,13 +1,13 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState, useRef } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import {
   addDoc,
   collection,
   serverTimestamp,
 } from "firebase/firestore";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { auth, db } from "../../lib/firebase";
 import Header from "../components/Header";
@@ -337,39 +337,68 @@ const countryCodeOptions = [
 ];
 
 /* =========================================================
-   INDIAN STATES
+   REVIEW HELPERS
 ========================================================= */
 
-const indianStates = [
-  "Andhra Pradesh",
-  "Arunachal Pradesh",
-  "Assam",
-  "Bihar",
-  "Chhattisgarh",
-  "Goa",
-  "Gujarat",
-  "Haryana",
-  "Himachal Pradesh",
-  "Jharkhand",
-  "Karnataka",
-  "Kerala",
-  "Madhya Pradesh",
-  "Maharashtra",
-  "Manipur",
-  "Meghalaya",
-  "Mizoram",
-  "Nagaland",
-  "Odisha",
-  "Punjab",
-  "Rajasthan",
-  "Sikkim",
-  "Tamil Nadu",
-  "Telangana",
-  "Tripura",
-  "Uttar Pradesh",
-  "Uttarakhand",
-  "West Bengal",
-];
+function ReviewField({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | number | null | undefined;
+}) {
+  const displayValue =
+    value !== null &&
+    value !== undefined &&
+    String(value).trim() !== ""
+      ? String(value)
+      : "Not provided";
+
+  return (
+    <div>
+      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-gray-500">
+        {label}
+      </p>
+
+      <div className="min-h-[44px] rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-900 whitespace-pre-wrap break-words">
+        {displayValue}
+      </div>
+    </div>
+  );
+}
+
+function ReviewSectionHeader({
+  number,
+  title,
+  onEdit,
+}: {
+  number: string;
+  title: string;
+  onEdit: () => void;
+}) {
+  return (
+    <div className="mb-6 flex items-center justify-between border-b border-gray-200 pb-4">
+      <div className="flex items-center gap-3">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#03471c] text-sm font-semibold text-white">
+          {number}
+        </div>
+
+        <h2 className="text-xl font-semibold text-[#03471c]">
+          {title}
+        </h2>
+      </div>
+
+      <button
+        type="button"
+        onClick={onEdit}
+        className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-[#03471c] transition hover:bg-green-50"
+      >
+        <span className="text-base">✎</span>
+        <span>Edit</span>
+      </button>
+    </div>
+  );
+}
 
 /* =========================================================
    COMPONENT
@@ -377,6 +406,7 @@ const indianStates = [
 
 export default function SellerRegistrationPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   /* =======================================================
      AUTH
@@ -438,6 +468,44 @@ export default function SellerRegistrationPage() {
   const [message, setMessage] = useState("");
 
   /* =======================================================
+     STEP 5 / SUBMISSION STATE
+  ======================================================= */
+
+  const [declarationAccepted, setDeclarationAccepted] =
+    useState(false);
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const [requestId, setRequestId] = useState("");
+
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const resetRegistration = () => {
+    setCurrentStep(1);
+
+    setBusinessInformation({
+      ...initialBusinessInformation,
+    });
+
+    setContactDetails({
+      ...initialContactDetails,
+    });
+
+    setProductDetails({
+      ...initialProductDetails,
+    });
+
+    setSaving(false);
+    setMessage("");
+
+    setDeclarationAccepted(false);
+
+    setSubmitted(false);
+
+    setRequestId("");
+  };
+
+  /* =======================================================
      AUTH CHECK
   ======================================================= */
 
@@ -457,6 +525,21 @@ export default function SellerRegistrationPage() {
 
     return () => unsubscribe();
   }, [router]);
+
+  useEffect(() => {
+    contentRef.current?.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentStep]);
+
+  useEffect(() => {
+    if (searchParams.get("new") === "true") {
+      resetRegistration();
+
+      router.replace("/seller-registration");
+    }
+  }, [searchParams, router]);
 
   /* =======================================================
      COUNTRY LIST
@@ -708,7 +791,7 @@ export default function SellerRegistrationPage() {
       return false;
     }
 
-    if (!businessInformation.state.trim()) {
+    /*if (!businessInformation.state.trim()) {
       setMessage(
         "Please enter State / Province."
       );
@@ -722,7 +805,7 @@ export default function SellerRegistrationPage() {
       );
 
       return false;
-    }
+    }*/
 
     if (
       !businessInformation.businessAddress.trim()
@@ -940,15 +1023,15 @@ export default function SellerRegistrationPage() {
 
     /* Product Description */
 
-    if (
-      !productDetails.productDescription.trim()
-    ) {
-      setMessage(
-        "Please enter the Product Description."
-      );
+    // if (
+    //   !productDetails.productDescription.trim()
+    // ) {
+    //   setMessage(
+    //     "Please enter the Product Description."
+    //   );
 
-      return false;
-    }
+    //   return false;
+    // }
 
     /* Available Quantity */
 
@@ -1304,15 +1387,25 @@ export default function SellerRegistrationPage() {
   };
 
   /* =======================================================
+     EDIT REVIEW SECTION
+  ======================================================= */
+
+  const handleEditStep = (step: number) => {
+    setCurrentStep(step);
+    setMessage("");
+  };
+
+  /* =======================================================
      FINAL SUBMIT
-     
+
      THIS is where Firestore INSERT happens.
-     
-     For now Steps 3 and 4 are placeholders.
-     We will add their data to this object later.
   ======================================================= */
 
   const handleFinalSubmit = async () => {
+    if (!declarationAccepted) {
+      setMessage("Please accept the declaration before submitting.");
+      return;
+    }
     if (!user) {
       setMessage(
         "You must be logged in to submit the registration."
@@ -1326,10 +1419,14 @@ export default function SellerRegistrationPage() {
       setMessage("");
 
       /*
-       * ONE Firestore document is created.
-       *
-       * All five-step information will eventually
-       * be stored here.
+       * Generate a readable request ID for the seller.
+       */
+
+      const generatedRequestId = `SKY-EXP-${crypto.randomUUID().replace(/-/g, "").slice(0, 6).toUpperCase()}`;
+
+      /*
+       * ONE Firestore document is created containing the
+       * complete registration data.
        */
 
       await addDoc(
@@ -1338,6 +1435,8 @@ export default function SellerRegistrationPage() {
           "sellerRegistrations"
         ),
         {
+          status: "In-progress",
+          
           /* =====================================
              BUSINESS INFORMATION
           ===================================== */
@@ -1526,6 +1625,13 @@ export default function SellerRegistrationPage() {
 
           currentStep: 5,
 
+          requestId: generatedRequestId,
+
+          declarationAccepted: true,
+
+          declarationText:
+            "I confirm that the information provided is accurate and that I am authorized to offer this product for export. I agree to be contacted by Skyma regarding this export request.",
+
           /* =====================================
              TIMESTAMPS
           ===================================== */
@@ -1538,13 +1644,47 @@ export default function SellerRegistrationPage() {
         }
       );
 
+      try {
+        const emailResponse = await fetch(
+          "/api/send-seller-registration",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              requestId: generatedRequestId,
+              name: contactDetails.fullName,
+              email: contactDetails.email,
+              phone: `${contactDetails.mobileCountryCode} ${contactDetails.mobileNumber}`,
+              productName: productDetails.productName,
+              companyName: businessInformation.businessName,
+            }),
+          }
+        );
+
+        const emailResult = await emailResponse.json();
+
+        if (!emailResponse.ok || !emailResult.success) {
+          console.error(
+            "Seller registration email failed:",
+            emailResult
+          );
+        }
+      } catch (emailError) {
+        console.error(
+          "Seller email request failed:",
+          emailError
+        );
+      }
+
       /*
        * Successfully submitted.
        */
 
-      setMessage(
-        "Seller registration submitted successfully."
-      );
+      setRequestId(generatedRequestId);
+      setSubmitted(true);
+      setMessage("");
 
     } catch (error) {
       console.error(
@@ -1564,8 +1704,77 @@ export default function SellerRegistrationPage() {
      AUTH LOADING
   ======================================================= */
 
+  const handleCloseSuccess = () => {
+    router.push("/home");
+  };
+
   if (checkingAuth || !user) {
     return null;
+  }
+
+  /* =======================================================
+     SUCCESS SCREEN
+  ======================================================= */
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-[#1f1f1f]">
+        <Header user={user} />
+
+        <main className="flex min-h-[calc(100vh-80px)] items-center justify-center p-6">
+          <div className="relative w-full max-w-2xl rounded-3xl bg-white p-8 text-center shadow-xl md:p-12">
+
+            {/* CLOSE BUTTON */}
+            <button
+              type="button"
+              onClick={handleCloseSuccess}
+              aria-label="Close"
+              className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full text-2xl font-light text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              ×
+            </button>
+
+            {/* SUCCESS ICON */}
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+              <span className="text-4xl text-[#03471c]">
+                ✓
+              </span>
+            </div>
+
+            {/* HEADING */}
+            <h1 className="text-2xl font-bold text-gray-900 md:text-3xl">
+              EXPORT REQUEST SUBMITTED SUCCESSFULLY
+            </h1>
+
+            {/* MESSAGE */}
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-gray-600">
+              Thank you for registering with Skyma as an
+              export seller. Our team will review your
+              business, product, availability, pricing,
+              and documents and contact you using the
+              details provided.
+            </p>
+
+            {/* REQUEST ID */}
+            <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-6">
+              <p className="text-sm font-medium text-gray-600">
+                Your Request ID
+              </p>
+
+              <p className="mt-2 text-3xl font-bold tracking-wide text-[#03471c]">
+                {requestId}
+              </p>
+
+              <p className="mt-3 text-xs text-gray-500">
+                Please keep this Request ID for future
+                communication with Skyma.
+              </p>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    );
   }
 
   /* =======================================================
@@ -1585,7 +1794,7 @@ export default function SellerRegistrationPage() {
   ======================================================= */
 
   return (
-    <div className="min-h-screen bg-[#1f1f1f]">
+    <div className="min-h-screen bg-[#1f1f1f] pt-[72px]">
 
       {/* =================================================
           HEADER
@@ -1593,9 +1802,9 @@ export default function SellerRegistrationPage() {
 
       <Header user={user} />
 
-      <main className="p-4 md:p-8">
+      <main className="h-[calc(100vh-80px)] p-4 md:p-8">
 
-        <div className="mx-auto flex max-w-6xl overflow-hidden rounded-3xl bg-white shadow-xl">
+        <div className="mx-auto flex h-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-xl">
 
           {/* =================================================
               LEFT SIDEBAR
@@ -1684,7 +1893,7 @@ export default function SellerRegistrationPage() {
               RIGHT CONTENT
           ================================================= */}
 
-          <section className="min-w-0 flex-1 p-6 md:p-12">
+          <section className="flex min-h-0 min-w-0 flex-1 flex-col p-6 md:p-12">
 
             {/* PAGE TITLE */}
 
@@ -1699,6 +1908,11 @@ export default function SellerRegistrationPage() {
               </p>
 
             </div>
+
+            <div
+              ref={contentRef}
+              className="min-h-0 flex-1 overflow-y-auto pr-2"
+            >
 
             {/* =================================================
                 STEP 1
@@ -2146,37 +2360,18 @@ export default function SellerRegistrationPage() {
                       className="mb-2 block text-sm font-medium text-gray-700"
                     >
                       State / Province
-                      <span className="text-red-500">
-                        {" "}*
-                      </span>
                     </label>
 
                     <input
                       id="state"
                       name="state"
-                      list="state-options"
-                      required
-                      value={
-                        businessInformation.state
-                      }
-                      onChange={
-                        handleBusinessChange
-                      }
-                      placeholder="Search state / province"
+                      type="text"
+                      value={businessInformation.state}
+                      onChange={handleBusinessChange}
+                      placeholder="Enter state / province"
                       autoComplete="address-level1"
                       className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
                     />
-
-                    <datalist id="state-options">
-                      {indianStates.map(
-                        (state) => (
-                          <option
-                            key={state}
-                            value={state}
-                          />
-                        )
-                      )}
-                    </datalist>
                   </div>
 
                   {/* =========================================
@@ -2189,16 +2384,12 @@ export default function SellerRegistrationPage() {
                       className="mb-2 block text-sm font-medium text-gray-700"
                     >
                       Business City
-                      <span className="text-red-500">
-                        {" "}*
-                      </span>
                     </label>
 
                     <input
                       id="city"
                       name="city"
                       type="text"
-                      required
                       value={
                         businessInformation.city
                       }
@@ -2735,7 +2926,8 @@ export default function SellerRegistrationPage() {
                   <button
                     type="button"
                     onClick={handlePrevious}
-                    className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
+                    //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
+                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
@@ -2877,15 +3069,11 @@ export default function SellerRegistrationPage() {
                       className="mb-2 block text-sm font-medium text-gray-700"
                     >
                       Product Description
-                      <span className="text-red-500">
-                        {" "}*
-                      </span>
                     </label>
 
                     <textarea
                       id="productDescription"
                       name="productDescription"
-                      required
                       rows={5}
                       value={
                         productDetails.productDescription
@@ -3504,7 +3692,8 @@ export default function SellerRegistrationPage() {
                   <button
                     type="button"
                     onClick={handlePrevious}
-                    className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
+                    //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
+                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
@@ -3549,7 +3738,8 @@ export default function SellerRegistrationPage() {
                   <button
                     type="button"
                     onClick={handlePrevious}
-                    className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 hover:bg-gray-50"
+                    //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 hover:bg-gray-50"
+                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
@@ -3570,132 +3760,331 @@ export default function SellerRegistrationPage() {
             )}
 
             {/* =================================================
-                STEP 5
+                STEP 5 - REVIEW & SUBMIT
             ================================================= */}
 
             {currentStep === 5 && (
+              <div className="pb-4">
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold text-[#03471c]">
+                    Review & Submit
+                  </h2>
 
-              <div>
-
-                <h2 className="mb-6 text-xl font-semibold text-[#03471c]">
-                  Review & Submit
-                </h2>
-
-                <div className="rounded-lg bg-gray-50 p-6">
-
-                  <h3 className="mb-4 font-semibold text-[#03471c]">
-                    Registration Ready
-                  </h3>
-
-                  <p className="text-sm text-gray-600">
-                    Review your information before submitting
-                    the seller registration.
+                  <p className="mt-2 text-sm text-gray-500">
+                    Review all information carefully before submitting your export request.
                   </p>
+                </div>
 
-                  <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+                {/* =================================================
+                    STEP 1 SUMMARY
+                ================================================= */}
 
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Business Type
-                      </p>
+                <section className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <ReviewSectionHeader
+                    number="01"
+                    title="Business Information"
+                    onEdit={() => handleEditStep(1)}
+                  />
 
-                      <p className="font-medium text-gray-800">
-                        {
-                          businessInformation.businessType
-                        }
-                      </p>
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <ReviewField
+                      label="Business Type"
+                      value={
+                        businessInformation.businessType === "Other"
+                          ? `Other - ${businessInformation.businessTypeOther}`
+                          : businessInformation.businessType
+                      }
+                    />
+
+                    <ReviewField
+                      label="Business / Company Name"
+                      value={businessInformation.businessName}
+                    />
+
+                    <ReviewField
+                      label="Nature of Business"
+                      value={
+                        businessInformation.natureOfBusiness === "Other"
+                          ? `Other - ${businessInformation.natureOfBusinessOther}`
+                          : businessInformation.natureOfBusiness
+                      }
+                    />
+
+                    <ReviewField
+                      label="Business Registration Certificate"
+                      value={businessInformation.hasRegistrationCertificate}
+                    />
+
+                    {showRegistrationNumber && (
+                      <ReviewField
+                        label="Registration Number"
+                        value={businessInformation.registrationNumber}
+                      />
+                    )}
+
+                    <ReviewField
+                      label="GST / Tax Identification Number"
+                      value={businessInformation.gstTaxId}
+                    />
+
+                    <ReviewField
+                      label="Export License / IEC"
+                      value={businessInformation.hasExportLicense}
+                    />
+
+                    {showExportLicenseDetails && (
+                      <ReviewField
+                        label="Export License / IEC Number"
+                        value={businessInformation.exportLicenseNumber}
+                      />
+                    )}
+
+                    <ReviewField
+                      label="Country"
+                      value={businessInformation.country}
+                    />
+
+                    <ReviewField
+                      label="State / Province"
+                      value={businessInformation.state}
+                    />
+
+                    <ReviewField
+                      label="Business City"
+                      value={businessInformation.city}
+                    />
+
+                    <ReviewField
+                      label="Years in Business / Farming"
+                      value={businessInformation.yearsInBusiness}
+                    />
+
+                    <ReviewField
+                      label="Business Website"
+                      value={businessInformation.website}
+                    />
+
+                    <div className="md:col-span-2">
+                      <ReviewField
+                        label="Business Address"
+                        value={businessInformation.businessAddress}
+                      />
                     </div>
-
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Business Name
-                      </p>
-
-                      <p className="font-medium text-gray-800">
-                        {
-                          businessInformation.businessName ||
-                          "Not provided"
-                        }
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Nature of Business
-                      </p>
-
-                      <p className="font-medium text-gray-800">
-                        {
-                          businessInformation.natureOfBusiness
-                        }
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Country
-                      </p>
-
-                      <p className="font-medium text-gray-800">
-                        {
-                          businessInformation.country
-                        }
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Contact Name
-                      </p>
-
-                      <p className="font-medium text-gray-800">
-                        {
-                          contactDetails.fullName
-                        }
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Email
-                      </p>
-
-                      <p className="font-medium text-gray-800">
-                        {
-                          contactDetails.email
-                        }
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Mobile
-                      </p>
-
-                      <p className="font-medium text-gray-800">
-                        {
-                          contactDetails.mobileCountryCode
-                        }{" "}
-                        {
-                          contactDetails.mobileNumber
-                        }
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="text-xs text-gray-500">
-                        Preferred Contact Method
-                      </p>
-
-                      <p className="font-medium text-gray-800">
-                        {
-                          contactDetails.preferredContactMethod
-                        }
-                      </p>
-                    </div>
-
                   </div>
+                </section>
 
+                {/* =================================================
+                    STEP 2 SUMMARY
+                ================================================= */}
+
+                <section className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <ReviewSectionHeader
+                    number="02"
+                    title="Contact Details"
+                    onEdit={() => handleEditStep(2)}
+                  />
+
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <ReviewField
+                      label="Full Name"
+                      value={contactDetails.fullName}
+                    />
+
+                    <ReviewField
+                      label="Role / Designation"
+                      value={
+                        contactDetails.role === "Other"
+                          ? `Other - ${contactDetails.roleOther}`
+                          : contactDetails.role
+                      }
+                    />
+
+                    <ReviewField
+                      label="Email Address"
+                      value={contactDetails.email}
+                    />
+
+                    <ReviewField
+                      label="Mobile Number"
+                      value={`${contactDetails.mobileCountryCode} ${contactDetails.mobileNumber}`.trim()}
+                    />
+
+                    <ReviewField
+                      label="Preferred Contact Method"
+                      value={contactDetails.preferredContactMethod}
+                    />
+
+                    <ReviewField
+                      label="Alternate Contact Name"
+                      value={contactDetails.alternateContactName}
+                    />
+
+                    <ReviewField
+                      label="Alternate Contact Number"
+                      value={contactDetails.alternateContactNumber}
+                    />
+
+                    <div className="md:col-span-2">
+                      <ReviewField
+                        label="Contact Address"
+                        value={contactDetails.contactAddress}
+                      />
+                    </div>
+                  </div>
+                </section>
+
+                {/* =================================================
+                    STEP 3 SUMMARY
+                ================================================= */}
+
+                <section className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <ReviewSectionHeader
+                    number="03"
+                    title="Product Details"
+                    onEdit={() => handleEditStep(3)}
+                  />
+
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <ReviewField
+                      label="Product Category / Section"
+                      value={
+                        productDetails.productCategory === "Other"
+                          ? `Other - ${productDetails.productCategoryOther}`
+                          : productDetails.productCategory
+                      }
+                    />
+
+                    <ReviewField
+                      label="Particular Product Name"
+                      value={productDetails.productName}
+                    />
+
+                    <div className="md:col-span-2">
+                      <ReviewField
+                        label="Product Description"
+                        value={productDetails.productDescription}
+                      />
+                    </div>
+
+                    <ReviewField
+                      label="Available Quantity"
+                      value={
+                        `${productDetails.availableQuantity || "Not provided"} ${productDetails.availableQuantityUnit === "Other" ? productDetails.availableQuantityUnitOther : productDetails.availableQuantityUnit}`.trim()
+                      }
+                    />
+
+                    <ReviewField
+                      label="Regular Supply Available?"
+                      value={productDetails.regularSupplyAvailable}
+                    />
+
+                    {showRegularSupplyCapacity && (
+                      <ReviewField
+                        label="Regular Supply Capacity"
+                        value={
+                          `${productDetails.regularSupplyCapacity || "Not provided"} ${productDetails.regularSupplyCapacityUnit === "Other" ? productDetails.regularSupplyCapacityUnitOther : productDetails.regularSupplyCapacityUnit}`.trim()
+                        }
+                      />
+                    )}
+
+                    <ReviewField
+                      label="Available From Date"
+                      value={productDetails.availableFromDate}
+                    />
+
+                    <ReviewField
+                      label="Available Until Date"
+                      value={productDetails.availableUntilDate}
+                    />
+
+                    <ReviewField
+                      label="Expected Export Rate"
+                      value={`${productDetails.expectedExportRateMin || "Not provided"} - ${productDetails.expectedExportRateMax || "Not provided"}`}
+                    />
+
+                    <ReviewField
+                      label="Currency"
+                      value={
+                        productDetails.currency === "Other"
+                          ? `Other - ${productDetails.currencyOther}`
+                          : productDetails.currency
+                      }
+                    />
+
+                    <ReviewField
+                      label="Price Unit"
+                      value={
+                        productDetails.priceUnit === "Other"
+                          ? `Other - ${productDetails.priceUnitOther}`
+                          : productDetails.priceUnit
+                      }
+                    />
+
+                    <ReviewField
+                      label="Rate Negotiable?"
+                      value={productDetails.rateNegotiable}
+                    />
+
+                    <ReviewField
+                      label="Origin / Production Location"
+                      value={productDetails.originProductionLocation}
+                    />
+
+                    <div className="md:col-span-2">
+                      <ReviewField
+                        label="Additional Information"
+                        value={productDetails.additionalInformation}
+                      />
+                    </div>
+                  </div>
+                </section>
+
+                {/* =================================================
+                    STEP 4 PHOTO PLACEHOLDER
+                    Actual upload / preview will be added later.
+                ================================================= */}
+
+                <section className="mb-8 rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <h3 className="font-semibold text-[#03471c]">
+                        Product Sample Photo
+                      </h3>
+                      <p className="mt-1 text-sm text-gray-500">
+                        Photo upload, thumbnail preview, Remove, and Replace will be added in Step 4.
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleEditStep(4)}
+                      className="shrink-0 rounded-lg px-3 py-2 text-sm font-medium text-[#03471c] transition hover:bg-green-100"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </section>
+
+                {/* =================================================
+                    DECLARATION
+                ================================================= */}
+
+                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+                  <label className="flex cursor-pointer items-start gap-3">
+                    <input
+                      type="checkbox"
+                      checked={declarationAccepted}
+                      onChange={(event) => {
+                        setDeclarationAccepted(event.target.checked);
+                        setMessage("");
+                      }}
+                      className="mt-1 h-4 w-4 rounded border-gray-300 text-[#06752e] focus:ring-green-200"
+                    />
+
+                    <span className="text-sm leading-6 text-gray-700">
+                      I confirm that the information provided is accurate and that I am authorized to offer this product for export. I agree to be contacted by Skyma regarding this export request.
+                    </span>
+                  </label>
                 </div>
 
                 {message && (
@@ -3707,12 +4096,12 @@ export default function SellerRegistrationPage() {
                 {/* BUTTONS */}
 
                 <div className="mt-10 flex justify-between">
-
                   <button
                     type="button"
                     onClick={handlePrevious}
                     disabled={saving}
-                    className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
+                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
@@ -3720,18 +4109,17 @@ export default function SellerRegistrationPage() {
                   <button
                     type="button"
                     onClick={handleFinalSubmit}
-                    disabled={saving}
+                    disabled={saving || !declarationAccepted}
                     className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white transition hover:bg-[#045d24] disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {saving
                       ? "Submitting..."
-                      : "Submit Registration →"}
+                      : "SUBMIT EXPORT REQUEST"}
                   </button>
-
                 </div>
-
               </div>
             )}
+            </div>
 
           </section>
 

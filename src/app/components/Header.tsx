@@ -12,36 +12,137 @@ export default function Header({ user }: { user: User }) {
 
   return (
     <>
-      <header className="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
-
+      <header
+        className="
+          fixed
+          top-0
+          left-0
+          right-0
+          z-50
+          h-[72px]
+          flex
+          items-center
+          justify-between
+          px-6
+          bg-white
+          shadow-sm
+        "
+      >
         {/* Left Side */}
         <div className="flex items-center gap-8">
 
-          {/* Page Title */}
-          <h2 className="text-xl font-semibold text-[#03471c]">
-            Home
-          </h2>
-
-          {/* Seller Registration Tab */}
+          {/* Home */}
           <Link
-            href="/seller-registration"
+            href="/home"
+            className="
+              text-xl
+              font-semibold
+              text-[#03471c]
+              hover:text-[#046d2b]
+              transition
+            "
+          >
+            Home
+          </Link>
+
+          {/* Our Services */}
+          <div className="group relative">
+
+            <button
+              type="button"
+              className="
+                flex
+                items-center
+                gap-2
+                text-sm
+                font-medium
+                text-[#03471c]
+                hover:text-[#046d2b]
+                transition
+                focus:outline-none
+              "
+            >
+              Our Services
+
+              <span className="text-xs transition-transform duration-200 group-hover:rotate-180">
+                ▼
+              </span>
+            </button>
+
+            {/* Dropdown */}
+            <div
+              className="
+                invisible
+                absolute
+                left-0
+                top-full
+                mt-3
+                w-56
+                rounded-lg
+                bg-white
+                shadow-lg
+                border
+                border-gray-200
+                py-2
+                z-50
+                opacity-0
+                transition-all
+                duration-200
+                group-hover:visible
+                group-hover:opacity-100
+              "
+            >
+              <Link
+                href="/seller-registration?new=true"
+                className="
+                  block
+                  px-4
+                  py-3
+                  text-sm
+                  text-gray-700
+                  hover:bg-green-50
+                  hover:text-[#03471c]
+                  transition
+                "
+              >
+                Seller Registration
+              </Link>
+
+              <Link
+                href="/buyer-registration?new=true"
+                className="
+                  block
+                  px-4
+                  py-3
+                  text-sm
+                  text-gray-700
+                  hover:bg-green-50
+                  hover:text-[#03471c]
+                  transition
+                "
+              >
+                Buyer Registration
+              </Link>
+            </div>
+
+          </div>
+
+          {/* History */}
+          <Link
+            href="/history"
             className="
               text-sm
               font-medium
               text-[#03471c]
-              border-b-2
-              border-transparent
-              hover:border-[#03471c]
+              hover:text-[#046d2b]
               transition
-              pb-1
             "
           >
-            Seller Registration
+            History
           </Link>
-
         </div>
 
-        {/* Profile Circle */}
+        {/* Profile */}
         <div
           onClick={() => setOpen(true)}
           className="
@@ -61,40 +162,9 @@ export default function Header({ user }: { user: User }) {
         >
           {firstLetter}
         </div>
-
       </header>
 
       <Sidebar open={open} setOpen={setOpen} />
     </>
   );
 }
-
-
-// "use client";
-
-// import { useState } from "react";
-// import { User } from "firebase/auth";
-// import Sidebar from "./Sidebar";
-
-// export default function Header({ user }: { user: User }) {
-//   const [open, setOpen] = useState(false);
-
-//   const firstLetter = user.email?.charAt(0).toUpperCase();
-
-//   return (
-//     <>
-//       <header className="flex justify-between items-center p-4 border-b">
-//         <h2 className="text-xl font-semibold">Home</h2>
-
-//         <div
-//           onClick={() => setOpen(true)}
-//           className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center cursor-pointer"
-//         >
-//           {firstLetter}
-//         </div>
-//       </header>
-
-//       <Sidebar open={open} setOpen={setOpen} />
-//     </>
-//   );
-// }

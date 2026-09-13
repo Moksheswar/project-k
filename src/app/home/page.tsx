@@ -25,7 +25,7 @@ export default function HomePage() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-[#1f1f1f]">
+    <div className="min-h-screen bg-[#1f1f1f] pt-[72px]">
       <Header user={user} />
 
       <div className="p-8">
