@@ -23,14 +23,14 @@ export default function Sidebar({
       {/* Overlay */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/40"
+          className="fixed inset-0 z-[100] bg-black/40"
           onClick={() => setOpen(false)}
         />
       )}
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl transform transition-transform duration-300
+        className={`fixed top-18 right-0 z-[101] h-100 w-64 bg-white shadow-xl transform transition-transform duration-300
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex flex-col h-full justify-between p-6">
