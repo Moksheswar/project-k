@@ -1176,13 +1176,19 @@ export default function BuyerRegistrationPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#1f1f1f]">
+      //<div className="min-h-screen bg-green-50">
+        <div
+        className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat pt-[72px]"
+        style={{
+          backgroundImage: "url('images/skyma-dbg.jpg')",
+        }}
+      >
 
         <Header user={user} />
 
         <main className="flex min-h-[calc(100vh-72px)] items-center justify-center p-6">
 
-          <div className="relative w-full max-w-2xl rounded-3xl bg-white p-10 text-center shadow-xl">
+          <div className="relative w-full max-w-2xl rounded-3xl border border-white/80 bg-white/55 p-8 text-center shadow-[0_10px_35px_rgba(3,71,28,0.10)] backdrop-blur-2xl md:p-10">
 
             {/* CLOSE BUTTON */}
 
@@ -1214,7 +1220,7 @@ export default function BuyerRegistrationPage() {
 
             {/* SUCCESS ICON */}
 
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-100/70 shadow-sm backdrop-blur-xl">
 
               <span className="text-3xl text-[#06752e]">
                 ✓
@@ -1237,7 +1243,7 @@ export default function BuyerRegistrationPage() {
 
             {/* REQUEST ID */}
 
-            <div className="mx-auto mt-8 max-w-md rounded-xl border border-green-200 bg-green-50 p-6">
+            <div className="mx-auto mt-8 max-w-md rounded-2xl border border-white/80 bg-emerald-50/55 p-6 shadow-inner backdrop-blur-xl">
 
               <p className="text-sm text-gray-600">
                 Request ID
@@ -1259,17 +1265,7 @@ export default function BuyerRegistrationPage() {
               onClick={() =>
                 router.push("/home")
               }
-              className="
-                mt-8
-                rounded-lg
-                bg-[#06752e]
-                px-8
-                py-3
-                font-medium
-                text-white
-                transition
-                hover:bg-[#045d24]
-              "
+              className="mt-8 rounded-xl border border-white/30 bg-emerald-800/85 px-8 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
             >
               Go to Home
             </button>
@@ -1298,7 +1294,13 @@ export default function BuyerRegistrationPage() {
   ======================================================= */
 
   return (
-    <div className="min-h-screen bg-[#1f1f1f] pt-[72px]">
+    //<div className="min-h-screen bg-green-50 pt-[72px]">
+    <div
+      className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat pt-[72px]"
+      style={{
+        backgroundImage: "url('images/skyma-dbg.jpg')",
+      }}
+    >
 
       <Header user={user} />
 
@@ -1318,15 +1320,15 @@ export default function BuyerRegistrationPage() {
             "
         > */}
 
-        <main className="h-[calc(100vh-80px)] p-4 md:p-8">
+        <main className="h-[calc(100vh-80px)] p-3 sm:p-5 md:p-8">
 
-        <div className="mx-auto flex h-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-xl">
+        <div className="mx-auto flex h-full max-w-6xl overflow-hidden rounded-3xl border border-white/60 bg-white/25 shadow-[0_8px_30px_rgba(3,71,28,0.10)] backdrop-blur-xl md:min-h-[calc(100vh-120px)]">
 
           {/* =================================================
               LEFT SIDEBAR
           ================================================= */}
 
-          <aside className="hidden w-[280px] shrink-0 bg-[#03471c] p-8 text-white md:block">
+          <aside className="relative hidden w-[280px] shrink-0 overflow-hidden bg-gradient-to-br from-[#03471c] via-emerald-800 to-[#06752e] p-8 text-white md:block">
 
             <h2 className="mb-10 text-xl font-semibold">
               Buyer Registration
@@ -1411,7 +1413,7 @@ export default function BuyerRegistrationPage() {
           ================================================= */}
 
           {/* <section id="buyer-registration-content" className="min-w-0 flex-1 min-h-0 p-6 md:p-12"> */}
-          <section className="flex min-h-0 min-w-0 flex-1 flex-col p-6 md:p-12">
+          <section className="flex min-h-0 min-w-0 flex-1 flex-col bg-white/20 p-4 sm:p-6 md:p-10 lg:p-12">
             
             {/* PAGE TITLE */}
 
@@ -1468,7 +1470,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleProductChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -1518,7 +1520,7 @@ export default function BuyerRegistrationPage() {
                           handleProductChange
                         }
                         placeholder="Specify product category"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -1551,7 +1553,7 @@ export default function BuyerRegistrationPage() {
                         handleProductChange
                       }
                       placeholder="Enter exact product name"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -1578,7 +1580,7 @@ export default function BuyerRegistrationPage() {
                         handleProductChange
                       }
                       placeholder="Describe the product you are looking for"
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -1605,7 +1607,7 @@ export default function BuyerRegistrationPage() {
                         handleProductChange
                       }
                       placeholder="Enter required quality, grade, specifications, standards, etc."
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -1638,7 +1640,7 @@ export default function BuyerRegistrationPage() {
                         handleProductChange
                       }
                       placeholder="Enter quantity"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -1665,7 +1667,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleProductChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -1715,7 +1717,7 @@ export default function BuyerRegistrationPage() {
                           handleProductChange
                         }
                         placeholder="Specify unit"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -1750,7 +1752,7 @@ export default function BuyerRegistrationPage() {
                         handleProductChange
                       }
                       placeholder="Minimum price"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -1783,7 +1785,7 @@ export default function BuyerRegistrationPage() {
                         handleProductChange
                       }
                       placeholder="Maximum price"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -1812,7 +1814,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleProductChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -1862,7 +1864,7 @@ export default function BuyerRegistrationPage() {
                           handleProductChange
                         }
                         placeholder="Enter currency"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -1893,7 +1895,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleProductChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -1943,7 +1945,7 @@ export default function BuyerRegistrationPage() {
                           handleProductChange
                         }
                         placeholder="Specify price unit"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -1953,7 +1955,7 @@ export default function BuyerRegistrationPage() {
                 </div>
 
                 {message && (
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
                 )}
@@ -1962,7 +1964,7 @@ export default function BuyerRegistrationPage() {
 
                   <button
                     type="submit"
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white transition hover:bg-[#045d24]"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
                   >
                     Save & Continue →
                   </button>
@@ -2010,7 +2012,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleLocationChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -2053,7 +2055,7 @@ export default function BuyerRegistrationPage() {
                           handleLocationChange
                         }
                         placeholder="Enter country"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -2084,7 +2086,7 @@ export default function BuyerRegistrationPage() {
                           handleLocationChange
                         }
                         placeholder="Country / city / region"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -2113,7 +2115,7 @@ export default function BuyerRegistrationPage() {
                         handleLocationChange
                       }
                       placeholder="Enter state"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2140,7 +2142,7 @@ export default function BuyerRegistrationPage() {
                         handleLocationChange
                       }
                       placeholder="Enter city"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2171,7 +2173,7 @@ export default function BuyerRegistrationPage() {
                         handleLocationChange
                       }
                       placeholder="Enter PIN code"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2198,7 +2200,7 @@ export default function BuyerRegistrationPage() {
                         handleLocationChange
                       }
                       placeholder="Enter preferred port"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2225,7 +2227,7 @@ export default function BuyerRegistrationPage() {
                         handleLocationChange
                       }
                       placeholder="Enter any other requirements or instructions"
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2254,7 +2256,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleLocationChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -2301,7 +2303,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleLocationChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -2326,7 +2328,7 @@ export default function BuyerRegistrationPage() {
                 </div>
 
                 {message && (
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
                 )}
@@ -2337,14 +2339,14 @@ export default function BuyerRegistrationPage() {
                     type="button"
                     onClick={handlePrevious}
                     //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 hover:bg-gray-50"
-                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-xl border border-emerald-800/25 bg-white/35 px-6 py-3 font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700/40 hover:bg-white/65 hover:shadow-[0_4px_14px_rgba(3,71,28,0.10)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
 
                   <button
                     type="submit"
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white hover:bg-[#045d24]"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
                   >
                     Save & Continue →
                   </button>
@@ -2394,7 +2396,7 @@ export default function BuyerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Enter first and last name"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2423,7 +2425,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleContactChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -2473,7 +2475,7 @@ export default function BuyerRegistrationPage() {
                           handleContactChange
                         }
                         placeholder="Specify role"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -2506,7 +2508,7 @@ export default function BuyerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Enter email address"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2535,7 +2537,7 @@ export default function BuyerRegistrationPage() {
                         onChange={
                           handleContactChange
                         }
-                        className="w-[120px] rounded-lg border border-gray-300 bg-white px-3 py-3 text-gray-900 outline-none focus:border-[#06752e]"
+                        className="w-[120px] shrink-0 rounded-xl border border-white/80 bg-white/45 px-3 py-3 text-gray-900 shadow-sm backdrop-blur-xl outline-none transition-all duration-200 focus:border-emerald-600/60 focus:ring-4 focus:ring-emerald-500/10"
                       >
 
                         {countryCodeOptions.map(
@@ -2562,7 +2564,7 @@ export default function BuyerRegistrationPage() {
                           handleContactChange
                         }
                         placeholder="Mobile number"
-                        className="min-w-0 flex-1 rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="min-w-0 flex-1 rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -2593,7 +2595,7 @@ export default function BuyerRegistrationPage() {
                       onChange={
                         handleContactChange
                       }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     >
 
                       <option value="">
@@ -2637,7 +2639,7 @@ export default function BuyerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Optional"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2664,7 +2666,7 @@ export default function BuyerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Optional"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2691,7 +2693,7 @@ export default function BuyerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Optional address if different from delivery address"
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2699,7 +2701,7 @@ export default function BuyerRegistrationPage() {
                 </div>
 
                 {message && (
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
                 )}
@@ -2710,14 +2712,14 @@ export default function BuyerRegistrationPage() {
                     type="button"
                     onClick={handlePrevious}
                     //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 hover:bg-gray-50"
-                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-xl border border-emerald-800/25 bg-white/35 px-6 py-3 font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700/40 hover:bg-white/65 hover:shadow-[0_4px_14px_rgba(3,71,28,0.10)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
 
                   <button
                     type="submit"
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white hover:bg-[#045d24]"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
                   >
                     Save & Continue →
                   </button>
@@ -2756,7 +2758,7 @@ export default function BuyerRegistrationPage() {
                     SECTION 1 - PRODUCT
                 ================================================= */}
 
-                <div className="mb-8 rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                <div className="mb-8 rounded-2xl border border-white/80 bg-white/40 p-5 shadow-[0_4px_18px_rgba(3,71,28,0.06)] backdrop-blur-xl transition-shadow duration-300 hover:shadow-[0_6px_22px_rgba(3,71,28,0.09)] sm:p-6">
 
                   {/* <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
 
@@ -2848,7 +2850,7 @@ export default function BuyerRegistrationPage() {
                     SECTION 2 - LOCATION
                 ================================================= */}
 
-                <div className="mb-8 rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                <div className="mb-8 rounded-2xl border border-white/80 bg-white/40 p-5 shadow-[0_4px_18px_rgba(3,71,28,0.06)] backdrop-blur-xl transition-shadow duration-300 hover:shadow-[0_6px_22px_rgba(3,71,28,0.09)] sm:p-6">
 
                   {/* <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
 
@@ -2962,7 +2964,7 @@ export default function BuyerRegistrationPage() {
                     SECTION 3 - CONTACT
                 ================================================= */}
 
-                <div className="mb-8 rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                <div className="mb-8 rounded-2xl border border-white/80 bg-white/40 p-5 shadow-[0_4px_18px_rgba(3,71,28,0.06)] backdrop-blur-xl transition-shadow duration-300 hover:shadow-[0_6px_22px_rgba(3,71,28,0.09)] sm:p-6">
 
                   {/* <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
 
@@ -3053,7 +3055,7 @@ export default function BuyerRegistrationPage() {
                     DECLARATION
                 ================================================= */}
 
-                <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+                <div className="rounded-2xl border border-white/80 bg-white/40 p-5 shadow-[0_4px_18px_rgba(3,71,28,0.05)] backdrop-blur-xl">
 
                 <label className="flex cursor-pointer items-start gap-3">
 
@@ -3065,17 +3067,7 @@ export default function BuyerRegistrationPage() {
                         event.target.checked
                         )
                     }
-                    className="
-                        mt-1
-                        h-4
-                        w-4
-                        shrink-0
-                        cursor-pointer
-                        rounded
-                        border-gray-300
-                        text-[#06752e]
-                        focus:ring-[#06752e]
-                    "
+                    className="mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-emerald-300 bg-white/70 text-emerald-700 accent-emerald-700 focus:ring-2 focus:ring-emerald-600/30"
                     />
 
                     <span className="text-sm leading-6 text-gray-700">
@@ -3093,7 +3085,7 @@ export default function BuyerRegistrationPage() {
 
                 {message && (
 
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
 
@@ -3108,7 +3100,7 @@ export default function BuyerRegistrationPage() {
                     onClick={handlePrevious}
                     disabled={saving}
                     //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-xl border border-emerald-800/25 bg-white/35 px-6 py-3 font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700/40 hover:bg-white/65 hover:shadow-[0_4px_14px_rgba(3,71,28,0.10)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
@@ -3120,18 +3112,7 @@ export default function BuyerRegistrationPage() {
                         saving ||
                         !declarationAccepted
                     }
-                    className="
-                        rounded-lg
-                        bg-[#06752e]
-                        px-7
-                        py-3
-                        font-medium
-                        text-white
-                        transition
-                        hover:bg-[#045d24]
-                        disabled:cursor-not-allowed
-                        disabled:opacity-50
-                    "
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                     {saving
                         ? "Submitting..."
@@ -3214,7 +3195,7 @@ function ReviewField({
         {label}
       </p>
 
-      <div className="min-h-[44px] rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-900 whitespace-pre-wrap break-words">
+      <div className="min-h-[44px] break-words whitespace-pre-wrap rounded-xl border border-white/70 bg-white/35 px-4 py-3 text-sm text-gray-800 shadow-sm backdrop-blur-xl">
         {displayValue}
       </div>
     </div>
@@ -3232,7 +3213,7 @@ function ReviewSectionHeader({
   onEdit: () => void;
 }) {
   return (
-    <div className="mb-6 flex items-center justify-between border-b border-gray-200 pb-4">
+    <div className="mb-6 flex items-center justify-between border-b border-emerald-900/10 pb-4">
 
       <div className="flex items-center gap-3">
 

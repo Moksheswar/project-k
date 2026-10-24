@@ -360,7 +360,7 @@ function ReviewField({
         {label}
       </p>
 
-      <div className="min-h-[44px] rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-900 whitespace-pre-wrap break-words">
+      <div className="min-h-[44px] break-words whitespace-pre-wrap rounded-xl border border-white/70 bg-white/35 px-4 py-3 text-sm text-gray-800 shadow-sm backdrop-blur-xl">
         {displayValue}
       </div>
     </div>
@@ -377,7 +377,7 @@ function ReviewSectionHeader({
   onEdit: () => void;
 }) {
   return (
-    <div className="mb-6 flex items-center justify-between border-b border-gray-200 pb-4">
+    <div className="mb-6 flex items-center justify-between border-b border-emerald-900/10 pb-4">
       <div className="flex items-center gap-3">
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#03471c] text-sm font-semibold text-white">
           {number}
@@ -1718,11 +1718,17 @@ export default function SellerRegistrationPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#1f1f1f]">
+      //<div className="min-h-screen bg-green-50 pt-[72px]">
+      <div
+        className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat pt-[72px]"
+        style={{
+          backgroundImage: "url('images/skyma-dbg.jpg')",
+        }}
+      >
         <Header user={user} />
 
         <main className="flex min-h-[calc(100vh-80px)] items-center justify-center p-6">
-          <div className="relative w-full max-w-2xl rounded-3xl bg-white p-8 text-center shadow-xl md:p-12">
+          <div className="relative w-full max-w-2xl rounded-3xl border border-white/80 bg-white/55 p-8 text-center shadow-[0_10px_35px_rgba(3,71,28,0.10)] backdrop-blur-2xl md:p-12">
 
             {/* CLOSE BUTTON */}
             <button
@@ -1756,7 +1762,7 @@ export default function SellerRegistrationPage() {
             </p>
 
             {/* REQUEST ID */}
-            <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-6">
+            <div className="mt-8 rounded-2xl border border-white/80 bg-emerald-50/55 p-6 shadow-inner backdrop-blur-xl">
               <p className="text-sm font-medium text-gray-600">
                 Your Request ID
               </p>
@@ -1794,7 +1800,13 @@ export default function SellerRegistrationPage() {
   ======================================================= */
 
   return (
-    <div className="min-h-screen bg-[#1f1f1f] pt-[72px]">
+    //<div className="min-h-screen bg-green-50 pt-[72px]">
+    <div
+      className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat pt-[72px]"
+      style={{
+        backgroundImage: "url('images/skyma-dbg.jpg')",
+      }}
+    >
 
       {/* =================================================
           HEADER
@@ -1802,15 +1814,16 @@ export default function SellerRegistrationPage() {
 
       <Header user={user} />
 
-      <main className="h-[calc(100vh-80px)] p-4 md:p-8">
-
-        <div className="mx-auto flex h-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-xl">
+      <main className="h-[calc(100vh-80px)] p-4 sm:p-5 md:p-8">
+        <div className="mx-auto flex h-full max-w-6xl overflow-hidden rounded-3xl border border-white/60 bg-white/25 shadow-[0_8px_30px_rgba(3,71,28,0.10)] backdrop-blur-xl md:min-h-[calc(100vh-120px)]">
 
           {/* =================================================
               LEFT SIDEBAR
           ================================================= */}
 
-          <aside className="hidden w-[280px] shrink-0 bg-[#03471c] p-8 text-white md:block">
+          <aside className="relative hidden w-[280px] shrink-0 overflow-hidden border-r border-white/20 bg-gradient-to-br from-[#03471c]/95 via-[#075b2b]/90 to-emerald-800/85 p-8 text-white backdrop-blur-2xl md:block">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-200/15 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
 
             <h2 className="mb-10 text-xl font-semibold">
               Seller Registration
@@ -1893,17 +1906,17 @@ export default function SellerRegistrationPage() {
               RIGHT CONTENT
           ================================================= */}
 
-          <section className="flex min-h-0 min-w-0 flex-1 flex-col p-6 md:p-12">
+          <section className="flex min-h-0 min-w-0 flex-1 flex-col bg-white/20 p-4 sm:p-6 md:p-10 lg:p-12">
 
             {/* PAGE TITLE */}
 
             <div className="mb-9">
 
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-3xl font-bold tracking-tight text-[#03471c] sm:text-4xl">
                 Register as a Seller
               </h1>
 
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="mt-2 text-sm leading-6 text-gray-600">
                 Join our global network of trusted sellers.
               </p>
 
@@ -2002,7 +2015,7 @@ export default function SellerRegistrationPage() {
                           handleBusinessChange
                         }
                         placeholder="Specify business type"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
                     </div>
                   )}
@@ -2039,7 +2052,7 @@ export default function SellerRegistrationPage() {
                         handleBusinessChange
                       }
                       placeholder="Enter legal or trading name"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                     {!requiresBusinessName && (
@@ -2123,7 +2136,7 @@ export default function SellerRegistrationPage() {
                           handleBusinessChange
                         }
                         placeholder="Specify nature of business"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
                     </div>
                   )}
@@ -2195,7 +2208,7 @@ export default function SellerRegistrationPage() {
                           handleBusinessChange
                         }
                         placeholder="Enter registration number"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
                     </div>
                   )}
@@ -2223,7 +2236,7 @@ export default function SellerRegistrationPage() {
                         handleBusinessChange
                       }
                       placeholder="Enter GST / Tax ID"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
                   </div>
 
@@ -2302,7 +2315,7 @@ export default function SellerRegistrationPage() {
                           handleBusinessChange
                         }
                         placeholder="Enter IEC / license number"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
                     </div>
                   )}
@@ -2398,7 +2411,7 @@ export default function SellerRegistrationPage() {
                       }
                       placeholder="Enter city / town"
                       autoComplete="address-level2"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
                   </div>
 
@@ -2431,7 +2444,7 @@ export default function SellerRegistrationPage() {
                       }
                       placeholder="Enter full farm, office, factory, warehouse, or operating address"
                       autoComplete="street-address"
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -2460,7 +2473,7 @@ export default function SellerRegistrationPage() {
                       }
                       placeholder="https://example.com"
                       autoComplete="url"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
                   </div>
 
@@ -2511,7 +2524,7 @@ export default function SellerRegistrationPage() {
                 {/* MESSAGE */}
 
                 {message && (
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
                 )}
@@ -2522,7 +2535,7 @@ export default function SellerRegistrationPage() {
 
                   <button
                     type="submit"
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white transition hover:bg-[#045d24]"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
                   >
                     Save & Continue →
                   </button>
@@ -2574,7 +2587,7 @@ export default function SellerRegistrationPage() {
                       }
                       placeholder="Enter first and last name"
                       autoComplete="name"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                     <p className="mt-1 text-xs text-gray-500">
@@ -2656,7 +2669,7 @@ export default function SellerRegistrationPage() {
                           handleContactChange
                         }
                         placeholder="Enter role / designation"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
                     </div>
                   )}
@@ -2689,7 +2702,7 @@ export default function SellerRegistrationPage() {
                       }
                       placeholder="Enter email address"
                       autoComplete="email"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                     <p className="mt-1 text-xs text-gray-500">
@@ -2841,7 +2854,7 @@ export default function SellerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Enter alternate contact name"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                     <p className="mt-1 text-xs text-gray-500">
@@ -2872,7 +2885,7 @@ export default function SellerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Enter alternate phone number"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
                   </div>
 
@@ -2900,7 +2913,7 @@ export default function SellerRegistrationPage() {
                         handleContactChange
                       }
                       placeholder="Enter contact address if different from business address"
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                     <p className="mt-1 text-xs text-gray-500">
@@ -2914,7 +2927,7 @@ export default function SellerRegistrationPage() {
                 {/* MESSAGE */}
 
                 {message && (
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
                 )}
@@ -2927,14 +2940,14 @@ export default function SellerRegistrationPage() {
                     type="button"
                     onClick={handlePrevious}
                     //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
-                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-xl border border-emerald-800/25 bg-white/35 px-6 py-3 font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700/40 hover:bg-white/65 hover:shadow-[0_4px_14px_rgba(3,71,28,0.10)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
 
                   <button
                     type="submit"
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white transition hover:bg-[#045d24]"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
                   >
                     Save & Continue →
                   </button>
@@ -3024,7 +3037,7 @@ export default function SellerRegistrationPage() {
                         }
                         onChange={handleProductChange}
                         placeholder="Enter product category"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -3053,7 +3066,7 @@ export default function SellerRegistrationPage() {
                       }
                       onChange={handleProductChange}
                       placeholder="Example: Fresh Red Chillies"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                     <p className="mt-1 text-xs text-gray-500">
@@ -3080,7 +3093,7 @@ export default function SellerRegistrationPage() {
                       }
                       onChange={handleProductChange}
                       placeholder="Describe the actual product, variety, grade/type, origin, and important characteristics."
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3109,7 +3122,7 @@ export default function SellerRegistrationPage() {
                       }
                       onChange={handleProductChange}
                       placeholder="Enter quantity"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3180,7 +3193,7 @@ export default function SellerRegistrationPage() {
                         }
                         onChange={handleProductChange}
                         placeholder="Specify quantity unit"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -3248,7 +3261,7 @@ export default function SellerRegistrationPage() {
                         }
                         onChange={handleProductChange}
                         placeholder="Quantity per month / shipment"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -3326,7 +3339,7 @@ export default function SellerRegistrationPage() {
                         }
                         onChange={handleProductChange}
                         placeholder="Specify unit"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -3354,7 +3367,7 @@ export default function SellerRegistrationPage() {
                         productDetails.availableFromDate
                       }
                       onChange={handleProductChange}
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3384,7 +3397,7 @@ export default function SellerRegistrationPage() {
                         productDetails.availableUntilDate
                       }
                       onChange={handleProductChange}
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3413,7 +3426,7 @@ export default function SellerRegistrationPage() {
                       }
                       onChange={handleProductChange}
                       placeholder="Enter minimum rate"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3442,7 +3455,7 @@ export default function SellerRegistrationPage() {
                       }
                       onChange={handleProductChange}
                       placeholder="Enter maximum rate"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3513,7 +3526,7 @@ export default function SellerRegistrationPage() {
                         }
                         onChange={handleProductChange}
                         placeholder="Enter currency"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -3586,7 +3599,7 @@ export default function SellerRegistrationPage() {
                         }
                         onChange={handleProductChange}
                         placeholder="Specify price unit"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                        className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                       />
 
                     </div>
@@ -3649,7 +3662,7 @@ export default function SellerRegistrationPage() {
                       }
                       onChange={handleProductChange}
                       placeholder="Farm, city, region, state, etc."
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3672,7 +3685,7 @@ export default function SellerRegistrationPage() {
                       }
                       onChange={handleProductChange}
                       placeholder="Enter any other information relevant to the export product."
-                      className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-[#06752e] focus:ring-2 focus:ring-green-100"
+                      className="w-full resize-none rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-gray-900 shadow-[0_2px_8px_rgba(3,71,28,0.04)] backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-400 hover:border-emerald-200 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
                     />
 
                   </div>
@@ -3681,7 +3694,7 @@ export default function SellerRegistrationPage() {
 
                 {message && (
 
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
 
@@ -3693,14 +3706,14 @@ export default function SellerRegistrationPage() {
                     type="button"
                     onClick={handlePrevious}
                     //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
-                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-xl border border-emerald-800/25 bg-white/35 px-6 py-3 font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700/40 hover:bg-white/65 hover:shadow-[0_4px_14px_rgba(3,71,28,0.10)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
 
                   <button
                     type="submit"
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white transition hover:bg-[#045d24]"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
                   >
                     Save & Continue →
                   </button>
@@ -3728,7 +3741,7 @@ export default function SellerRegistrationPage() {
                 </p>
 
                 {message && (
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
                 )}
@@ -3739,7 +3752,7 @@ export default function SellerRegistrationPage() {
                     type="button"
                     onClick={handlePrevious}
                     //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 hover:bg-gray-50"
-                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-xl border border-emerald-800/25 bg-white/35 px-6 py-3 font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700/40 hover:bg-white/65 hover:shadow-[0_4px_14px_rgba(3,71,28,0.10)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
@@ -3749,7 +3762,7 @@ export default function SellerRegistrationPage() {
                     onClick={() =>
                       setCurrentStep(5)
                     }
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white hover:bg-[#045d24]"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
                   >
                     Save & Continue →
                   </button>
@@ -3779,7 +3792,7 @@ export default function SellerRegistrationPage() {
                     STEP 1 SUMMARY
                 ================================================= */}
 
-                <section className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <section className="mb-8 rounded-2xl border border-white/80 bg-white/40 p-5 shadow-[0_4px_18px_rgba(3,71,28,0.06)] backdrop-blur-xl transition-shadow duration-300 hover:shadow-[0_6px_22px_rgba(3,71,28,0.09)] sm:p-6">
                   <ReviewSectionHeader
                     number="01"
                     title="Business Information"
@@ -3877,7 +3890,7 @@ export default function SellerRegistrationPage() {
                     STEP 2 SUMMARY
                 ================================================= */}
 
-                <section className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <section className="mb-8 rounded-2xl border border-white/80 bg-white/40 p-5 shadow-[0_4px_18px_rgba(3,71,28,0.06)] backdrop-blur-xl transition-shadow duration-300 hover:shadow-[0_6px_22px_rgba(3,71,28,0.09)] sm:p-6">
                   <ReviewSectionHeader
                     number="02"
                     title="Contact Details"
@@ -3937,7 +3950,7 @@ export default function SellerRegistrationPage() {
                     STEP 3 SUMMARY
                 ================================================= */}
 
-                <section className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <section className="mb-8 rounded-2xl border border-white/80 bg-white/40 p-5 shadow-[0_4px_18px_rgba(3,71,28,0.06)] backdrop-blur-xl transition-shadow duration-300 hover:shadow-[0_6px_22px_rgba(3,71,28,0.09)] sm:p-6">
                   <ReviewSectionHeader
                     number="03"
                     title="Product Details"
@@ -4088,7 +4101,7 @@ export default function SellerRegistrationPage() {
                 </div>
 
                 {message && (
-                  <div className="mt-6 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+                  <div className="mt-6 rounded-xl border border-emerald-200/70 bg-emerald-50/65 p-4 text-sm font-medium text-[#03471c] shadow-sm backdrop-blur-xl">
                     {message}
                   </div>
                 )}
@@ -4101,16 +4114,16 @@ export default function SellerRegistrationPage() {
                     onClick={handlePrevious}
                     disabled={saving}
                     //className="rounded-lg border border-gray-300 px-7 py-3 font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
-                    className="rounded-lg border border-[#06752e] px-7 py-3 font-medium text-[#06752e] transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-xl border border-emerald-800/25 bg-white/35 px-6 py-3 font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700/40 hover:bg-white/65 hover:shadow-[0_4px_14px_rgba(3,71,28,0.10)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     ← Previous
                   </button>
-
+             
                   <button
                     type="button"
                     onClick={handleFinalSubmit}
                     disabled={saving || !declarationAccepted}
-                    className="rounded-lg bg-[#06752e] px-7 py-3 font-medium text-white transition hover:bg-[#045d24] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="rounded-xl border border-white/30 bg-emerald-800/85 px-7 py-3 font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {saving
                       ? "Submitting..."

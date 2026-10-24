@@ -116,7 +116,7 @@ function ReviewField({
         {label}
       </p>
 
-      <div className="min-h-[44px] rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-900 whitespace-pre-wrap break-words">
+      <div className="min-h-[44px] break-words whitespace-pre-wrap rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-sm text-gray-800 shadow-sm backdrop-blur-xl">
         {displayValue}
       </div>
     </div>
@@ -341,7 +341,12 @@ export default function HistoryPage() {
     }
 
   return (
-    <div className="min-h-screen bg-black-100 pt-[72px]">
+    <div
+      className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat pt-[72px]"
+      style={{
+        backgroundImage: "url('images/skyma-dbg.jpg')",
+      }}
+    >
         <Header user={user} />
 
       {/* MAIN HISTORY AREA */}
@@ -353,13 +358,15 @@ export default function HistoryPage() {
           {/* PAGE TITLE */}
           <div className="mb-6">
 
-            <h1 className="text-2xl font-semibold text-white">
+            <div className="mb-6">
+            <h1 className="text-3xl font-extrabold text-[#023b18] drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
               History
             </h1>
 
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-sm font-semibold text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
               View your buyer and seller registration history.
             </p>
+          </div>
 
           </div>
 
@@ -381,20 +388,7 @@ export default function HistoryPage() {
                       | "Export"
                   )
                 }
-                className="
-                  rounded-lg
-                  border
-                  border-gray-300
-                  bg-white
-                  px-4
-                  py-2.5
-                  text-sm
-                  text-gray-700
-                  outline-none
-                  focus:border-[#03471c]
-                  focus:ring-2
-                  focus:ring-green-100
-                "
+                className="rounded-xl border border-white/80 bg-white/45 px-4 py-2.5 text-sm text-[#03471c] shadow-sm backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-300 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
               >
 
                 <option value="All">
@@ -424,21 +418,7 @@ export default function HistoryPage() {
                   setSearch(e.target.value)
                 }
                 placeholder="Search Request ID"
-                className="
-                  w-full
-                  rounded-lg
-                  border
-                  border-gray-300
-                  bg-white
-                  px-4
-                  py-2.5
-                  text-sm
-                  text-gray-900
-                  outline-none
-                  focus:border-[#03471c]
-                  focus:ring-2
-                  focus:ring-green-100
-                "
+                className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-2.5 text-sm text-gray-900 shadow-sm backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-500 hover:border-emerald-300 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
               />
 
             </div>
@@ -460,7 +440,7 @@ export default function HistoryPage() {
           {/* NOT LOGGED IN */}
 
           {!loading && !user && (
-            <div className="rounded-xl bg-white p-8 text-center">
+            <div className="rounded-2xl border border-white/80 bg-white/50 p-8 text-center shadow-[0_8px_25px_rgba(3,71,28,0.07)] backdrop-blur-xl">
 
               <p className="text-gray-600">
                 Please log in to view your history.
@@ -475,7 +455,7 @@ export default function HistoryPage() {
             user &&
             paginatedRegistrations.length === 0 && (
 
-              <div className="rounded-xl bg-white p-10 text-center">
+              <div className="rounded-2xl border border-white/80 bg-white/50 p-10 text-center shadow-[0_8px_25px_rgba(3,71,28,0.07)] backdrop-blur-xl">
 
                 <p className="text-lg font-medium text-gray-700">
                   No registrations found
@@ -501,11 +481,11 @@ export default function HistoryPage() {
 
                     <div
                       key={`${registration.type}-${registration.id}`}
-                       className={`rounded-2xl p-4 border border-gray-200 border-l-10 bg-white ${
-                            registration.type === "Import"
-                            ? "border-l-blue-500"
-                            : "border-l-[#03471c]"
-                        }`}
+                       className={`rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_8px_25px_rgba(3,71,28,0.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-[0_12px_30px_rgba(3,71,28,0.12)] ${
+                              registration.type === "Import"
+                                ? "border-l-[8px] border-l-blue-600"
+                                : "border-l-[8px] border-l-[#03471c]"
+                            }`}
                     >
 
                       {/* CARD HEADER */}
@@ -523,10 +503,9 @@ export default function HistoryPage() {
                               text-xs
                               font-medium
                               ${
-                                registration.type ===
-                                "Import"
-                                  ? "bg-blue-50 text-blue-700"
-                                  : "bg-green-50 text-green-700"
+                                registration.type === "Import"
+                                  ? "border border-blue-200/70 bg-blue-100/65 text-blue-800"
+                                  : "border border-emerald-200/70 bg-emerald-100/65 text-emerald-900"
                               }
                             `}
                           >
@@ -550,21 +529,7 @@ export default function HistoryPage() {
                             )
                           }
                           title="View Details"
-                          className="
-                            flex
-                            h-9
-                            w-9
-                            items-center
-                            justify-center
-                            rounded-full
-                            border
-                            border-gray-300
-                            text-gray-600
-                            transition
-                            hover:border-[#03471c]
-                            hover:bg-green-50
-                            hover:text-[#03471c]
-                          "
+                          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/40 text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-200 hover:border-emerald-400/60 hover:bg-emerald-50/80 hover:shadow-md"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -607,7 +572,7 @@ export default function HistoryPage() {
                           Request ID
                         </p>
 
-                        <p className="mt-1 font-medium text-gray-900">
+                        <p className="mt-1 break-words font-semibold text-[#03471c]">
                           {registration.requestId ||
                             "Not provided"}
                         </p>
@@ -624,7 +589,7 @@ export default function HistoryPage() {
                             Last Modified
                           </p>
 
-                          <p className="mt-1 text-sm text-gray-700">
+                          <p className="mt-1 text-sm text-gray-800">
                             {formatDate(
                               registration.updatedAt
                             )}
@@ -640,12 +605,12 @@ export default function HistoryPage() {
 
                           <span
                              className={`mt-1 inline-flex rounded-full px-3 py-1 text-xs font-medium ${
-                                registration.status === "Completed"
-                                ? "bg-green-100 text-green-700"
-                                : registration.status === "In-progress"
-                                ? "bg-yellow-100 text-yellow-700"
-                                : "bg-red-100 text-red-700"
-                            }`}
+                                  registration.status === "Completed"
+                                    ? "border border-emerald-200/70 bg-emerald-100/70 text-emerald-900"
+                                    : registration.status === "In-progress"
+                                    ? "border border-amber-200/70 bg-amber-100/75 text-amber-900"
+                                    : "border border-rose-200/70 bg-rose-100/70 text-rose-900"
+                                }`}
                           >
                             {registration.status ||
                               "NA"}
@@ -679,28 +644,14 @@ export default function HistoryPage() {
                       (page) => page - 1
                     )
                   }
-                  className="
-                    rounded-lg
-                    border
-                    border-[#03471c]
-                    bg-white
-                    px-5
-                    py-2.5
-                    text-sm
-                    font-medium
-                    text-[#03471c]
-                    transition
-                    hover:bg-green-50
-                    disabled:cursor-not-allowed
-                    disabled:opacity-40
-                  "
+                  className="rounded-xl border border-white/80 bg-white/40 px-5 py-2.5 text-sm font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Previous
                 </button>
 
                 {/* PAGE NUMBER */}
 
-                <span className="text-sm font-medium text-white">
+                <span className="text-sm font-semibold text-[#03471c]">
                   Page {currentPage} of{" "}
                   {totalPages}
                 </span>
@@ -717,21 +668,7 @@ export default function HistoryPage() {
                       (page) => page + 1
                     )
                   }
-                  className="
-                    rounded-lg
-                    border
-                    border-[#03471c]
-                    bg-white
-                    px-5
-                    py-2.5
-                    text-sm
-                    font-medium
-                    text-[#03471c]
-                    transition
-                    hover:bg-green-50
-                    disabled:cursor-not-allowed
-                    disabled:opacity-40
-                  "
+                  className="rounded-xl border border-white/80 bg-white/40 px-5 py-2.5 text-sm font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Next
                 </button>
@@ -750,33 +687,14 @@ export default function HistoryPage() {
       {selectedRegistration && (
 
         <div
-          className="
-            fixed
-            inset-0
-            z-50
-            flex
-            items-center
-            justify-center
-            bg-black/60
-            p-4
-          "
+          className="fixed inset-0 z-50 flex items-center justify-center bg-emerald-950/45 p-4 backdrop-blur-md"
           onClick={closeDetails}
         >
 
           {/* POPUP */}
 
           <div
-            className="
-              flex
-              max-h-[90vh]
-              w-full
-              max-w-4xl
-              flex-col
-              overflow-hidden
-              rounded-2xl
-              bg-white
-              shadow-2xl
-            "
+            className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_20px_60px_rgba(3,71,28,0.20)] backdrop-blur-2xl"
             onClick={(e) =>
               e.stopPropagation()
             }
@@ -787,16 +705,7 @@ export default function HistoryPage() {
                 ================================================= */}
 
             <div
-              className="
-                flex
-                shrink-0
-                items-center
-                justify-between
-                border-b
-                border-gray-200
-                px-6
-                py-5
-              "
+              className="flex shrink-0 items-center justify-between border-b border-emerald-900/10 bg-white/45 px-6 py-5 backdrop-blur-xl"
             >
 
               <div>
@@ -867,13 +776,7 @@ export default function HistoryPage() {
                 ================================================= */}
 
             <div
-              className="
-                min-h-0
-                flex-1
-                overflow-y-auto
-                px-6
-                py-6
-              "
+              className="min-h-0 flex-1 overflow-y-auto bg-white/20 px-6 py-6"
             >
 
               {/* =================================================
@@ -1215,7 +1118,7 @@ export default function HistoryPage() {
                   COMMON DETAILS
                   ================================================= */}
 
-              <section className="border-t border-gray-200 pt-6">
+              <section className="border-t border-emerald-900/10 pt-6">
 
                 <div className="mb-5 flex items-center gap-3">
 
@@ -1255,34 +1158,13 @@ export default function HistoryPage() {
                 ================================================= */}
 
             <div
-              className="
-                flex
-                shrink-0
-                items-center
-                justify-end
-                border-t
-                border-gray-200
-                bg-white
-                px-6
-                py-4
-              "
+              className="flex shrink-0 items-center justify-end border-t border-emerald-900/10 bg-white/45 px-6 py-4 backdrop-blur-xl"
             >
 
               <button
                 type="button"
                 onClick={closeDetails}
-                className="
-                  rounded-lg
-                  border
-                  border-[#03471c]
-                  px-6
-                  py-2.5
-                  text-sm
-                  font-medium
-                  text-[#03471c]
-                  transition
-                  hover:bg-green-50
-                "
+                className="rounded-xl border border-emerald-800/25 bg-white/40 px-6 py-2.5 text-sm font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/75 hover:shadow-md"
               >
                 Close
               </button>

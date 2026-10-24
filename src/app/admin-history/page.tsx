@@ -145,7 +145,7 @@ function ReviewField({
         {label}
       </p>
 
-      <div className="min-h-[44px] whitespace-pre-wrap break-words rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-900">
+      <div className="min-h-[44px] break-words whitespace-pre-wrap rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-sm text-gray-800 shadow-sm backdrop-blur-xl">
         {displayValue(value)}
       </div>
     </div>
@@ -564,15 +564,20 @@ export default function AdminHistoryPage() {
    * Wait until Firebase has checked the signed-in user.
    */
   if (!authChecked) {
-    return <div className="min-h-screen bg-black" />;
+    return <div className="min-h-screen bg-[#eaf5e5]" />;
   }
 
   if (!user) {
-    return <div className="min-h-screen bg-black" />;
+    return <div className="min-h-screen bg-[#eaf5e5]" />;
   }
 
   return (
-    <div className="min-h-screen bg-black pt-[72px]">
+    <div
+      className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat pt-[72px]"
+      style={{
+        backgroundImage: "url('images/skyma-dbg.jpg')",
+      }}
+    >
       {/* FIXED HEADER */}
       <Header user={user} />
 
@@ -580,11 +585,11 @@ export default function AdminHistoryPage() {
         <div className="mx-auto max-w-7xl">
           {/* PAGE TITLE */}
           <div className="mb-6">
-            <h1 className="text-2xl font-semibold text-white">
+            <h1 className="text-3xl font-extrabold text-[#023b18] drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
               Admin History
             </h1>
 
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-sm font-semibold text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
               View all buyer and seller registration requests.
             </p>
           </div>
@@ -598,16 +603,7 @@ export default function AdminHistoryPage() {
                 onChange={(event) =>
                   setFilter(event.target.value as FilterType)
                 }
-                className="
-                  rounded-lg
-                  border border-gray-300
-                  bg-white
-                  px-4 py-2.5
-                  text-sm text-gray-700
-                  outline-none
-                  focus:border-[#03471c]
-                  focus:ring-2 focus:ring-green-100
-                "
+                className="rounded-xl border border-white/80 bg-white/45 px-4 py-2.5 text-sm text-[#03471c] shadow-sm backdrop-blur-xl outline-none transition-all duration-200 hover:border-emerald-300 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
               >
                 <option value="All">All</option>
                 <option value="Import">Import</option>
@@ -622,17 +618,7 @@ export default function AdminHistoryPage() {
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search Request ID"
-                className="
-                  w-full
-                  rounded-lg
-                  border border-gray-300
-                  bg-white
-                  px-4 py-2.5
-                  text-sm text-gray-900
-                  outline-none
-                  focus:border-[#03471c]
-                  focus:ring-2 focus:ring-green-100
-                "
+                className="w-full rounded-xl border border-white/80 bg-white/45 px-4 py-2.5 text-sm text-gray-900 shadow-sm backdrop-blur-xl outline-none transition-all duration-200 placeholder:text-gray-500 hover:border-emerald-300 focus:border-emerald-600/60 focus:bg-white/70 focus:ring-4 focus:ring-emerald-500/10"
               />
             </div>
           </div>
@@ -648,7 +634,7 @@ export default function AdminHistoryPage() {
 
           {/* ERROR */}
           {!loading && error && (
-            <div className="rounded-xl bg-white p-8 text-center">
+            <div className="rounded-2xl border border-white/80 bg-white/60 p-8 text-center shadow-[0_8px_25px_rgba(3,71,28,0.08)] backdrop-blur-xl">
               <p className="text-red-600">{error}</p>
             </div>
           )}
@@ -657,7 +643,7 @@ export default function AdminHistoryPage() {
           {!loading &&
             !error &&
             paginatedRegistrations.length === 0 && (
-              <div className="rounded-xl bg-white p-10 text-center">
+              <div className="rounded-2xl border border-white/80 bg-white/60 p-10 text-center shadow-[0_8px_25px_rgba(3,71,28,0.08)] backdrop-blur-xl">
                 <p className="text-lg font-medium text-gray-700">
                   No registrations found
                 </p>
@@ -690,19 +676,11 @@ export default function AdminHistoryPage() {
                   return (
                     <div
                       key={`${registration.type}-${registration.id}`}
-                      className={`
-                        rounded-xl
-                        border border-gray-200
-                        border-l-[8px]
-                        ${
-                          registration.type === "Import"
-                            ? "border-l-blue-500"
-                            : "border-l-[#03471c]"
-                        }
-                        bg-white
-                        p-5
-                        shadow-sm
-                      `}
+                      className={`rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_8px_25px_rgba(3,71,28,0.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-[0_12px_30px_rgba(3,71,28,0.12)] border-l-[8px] ${
+                        registration.type === "Import"
+                          ? "border-l-blue-600"
+                          : "border-l-[#03471c]"
+                      }`}
                     >
                       {/* CARD HEADER */}
                       <div className="mb-4 flex items-start justify-between">
@@ -715,8 +693,8 @@ export default function AdminHistoryPage() {
                               text-xs font-medium
                               ${
                                 registration.type === "Import"
-                                  ? "bg-blue-50 text-blue-700"
-                                  : "bg-green-50 text-green-700"
+                                  ? "border border-blue-200/70 bg-blue-100/65 text-blue-800"
+                                  : "border border-emerald-200/70 bg-emerald-100/65 text-emerald-900"
                               }
                             `}
                           >
@@ -736,17 +714,7 @@ export default function AdminHistoryPage() {
                           }
                           title="View Details"
                           aria-label={`View details for ${registration.requestId}`}
-                          className="
-                            flex h-9 w-9
-                            items-center justify-center
-                            rounded-full
-                            border border-gray-300
-                            text-gray-600
-                            transition
-                            hover:border-[#03471c]
-                            hover:bg-green-50
-                            hover:text-[#03471c]
-                          "
+                          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/40 text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-200 hover:border-emerald-400/60 hover:bg-emerald-50/80 hover:shadow-md"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -772,7 +740,7 @@ export default function AdminHistoryPage() {
                           Request ID
                         </p>
 
-                        <p className="mt-1 break-all font-medium text-gray-900">
+                        <p className="mt-1 break-all font-semibold text-[#03471c]">
                           {registration.requestId || "Not provided"}
                         </p>
                       </div>
@@ -784,7 +752,7 @@ export default function AdminHistoryPage() {
                             Last Modified
                           </p>
 
-                          <p className="mt-1 text-sm text-gray-700">
+                          <p className="mt-1 text-sm font-medium text-gray-800">
                             {formatDate(lastModified)}
                           </p>
                         </div>
@@ -804,7 +772,7 @@ export default function AdminHistoryPage() {
                                 )
                                 }
                                 disabled={savingStatusId === registration.id}
-                                className="rounded-full border border-gray-300 bg-white px-3 py-1 text-xs text-gray-700 outline-none focus:border-[#03471c]"
+                                className="rounded-xl border border-white/80 bg-white/65 px-3 py-2 text-xs text-[#03471c] shadow-sm backdrop-blur-xl outline-none focus:border-emerald-600/60 focus:ring-2 focus:ring-emerald-500/10"
                             >
                                 <option value="In-progress">In-progress</option>
                                 <option value="Completed">Completed</option>
@@ -817,7 +785,7 @@ export default function AdminHistoryPage() {
                                 disabled={savingStatusId === registration.id}
                                 title="Save status"
                                 aria-label="Save status"
-                                className="flex h-7 w-7 items-center justify-center rounded-full text-green-700 transition hover:bg-green-100 disabled:opacity-50"
+                                className="flex h-7 w-7 items-center justify-center rounded-full border border-emerald-200/70 bg-white/45 text-emerald-800 shadow-sm backdrop-blur-xl transition hover:bg-emerald-100/80 disabled:opacity-50"
                             >
                                 {savingStatusId === registration.id ? (
                                 <span className="text-xs">...</span>
@@ -836,7 +804,7 @@ export default function AdminHistoryPage() {
                                 disabled={savingStatusId === registration.id}
                                 title="Cancel editing"
                                 aria-label="Cancel editing"
-                                className="flex h-7 w-7 items-center justify-center rounded-full text-red-600 transition hover:bg-red-100 disabled:opacity-50"
+                                className="flex h-7 w-7 items-center justify-center rounded-full border border-rose-200/70 bg-white/45 text-rose-800 shadow-sm backdrop-blur-xl transition hover:bg-rose-100/80 disabled:opacity-50"
                             >
                                 <span className="text-lg font-bold">×</span>
                             </button>
@@ -849,10 +817,10 @@ export default function AdminHistoryPage() {
                                 text-xs font-medium
                                 ${
                                     status.toLowerCase() === "na"
-                                    ? "bg-red-100 text-red-700"
-                                    : status.toLowerCase() === "completed"
-                                        ? "bg-green-100 text-green-700"
-                                        : "bg-yellow-100 text-yellow-700"
+                                      ? "border border-rose-200/70 bg-rose-100/75 text-rose-900"
+                                      : status.toLowerCase() === "completed"
+                                      ? "border border-emerald-200/70 bg-emerald-100/75 text-emerald-900"
+                                      : "border border-amber-200/70 bg-amber-100/75 text-amber-900"
                                 }
                                 `}
                             >
@@ -873,7 +841,7 @@ export default function AdminHistoryPage() {
                                 }}
                                 title="Edit status"
                                 aria-label="Edit status"
-                                className="flex h-7 w-7 items-center justify-center rounded-full text-gray-500 transition hover:bg-green-50 hover:text-[#03471c]"
+                                className="flex h-7 w-7 items-center justify-center rounded-full border border-white/70 bg-white/35 text-[#03471c] shadow-sm backdrop-blur-xl transition hover:border-emerald-300 hover:bg-emerald-50/80 hover:text-[#03471c]"
                             >
                                 <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -911,21 +879,12 @@ export default function AdminHistoryPage() {
                   onClick={() =>
                     setCurrentPage((page) => Math.max(1, page - 1))
                   }
-                  className="
-                    rounded-lg
-                    border border-[#03471c]
-                    bg-white
-                    px-5 py-2.5
-                    text-sm font-medium text-[#03471c]
-                    transition hover:bg-green-50
-                    disabled:cursor-not-allowed
-                    disabled:opacity-40
-                  "
+                  className="rounded-xl border border-white/80 bg-white/40 px-5 py-2.5 text-sm font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Previous
                 </button>
 
-                <span className="text-sm font-medium text-white">
+                <span className="text-sm font-semibold text-[#03471c] drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
                   Page {currentPage} of {totalPages}
                 </span>
 
@@ -937,16 +896,7 @@ export default function AdminHistoryPage() {
                       Math.min(totalPages, page + 1)
                     )
                   }
-                  className="
-                    rounded-lg
-                    border border-[#03471c]
-                    bg-white
-                    px-5 py-2.5
-                    text-sm font-medium text-[#03471c]
-                    transition hover:bg-green-50
-                    disabled:cursor-not-allowed
-                    disabled:opacity-40
-                  "
+                  className="rounded-xl border border-white/80 bg-white/40 px-5 py-2.5 text-sm font-semibold text-[#03471c] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Next
                 </button>
@@ -960,33 +910,16 @@ export default function AdminHistoryPage() {
           ===================================================== */}
       {selectedRegistration && (
         <div
-          className="
-            fixed inset-0 z-[100]
-            flex items-center justify-center
-            bg-black/70 p-4
-          "
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-emerald-950/45 p-4 backdrop-blur-md"
           onClick={() => setSelectedRegistration(null)}
         >
           <div
-            className="
-              flex max-h-[90vh]
-              w-full max-w-4xl
-              flex-col
-              overflow-hidden
-              rounded-2xl
-              bg-white
-              shadow-2xl
-            "
+            className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_20px_60px_rgba(3,71,28,0.20)] backdrop-blur-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             {/* POPUP HEADER */}
             <div
-              className="
-                flex shrink-0
-                items-center justify-between
-                border-b border-gray-200
-                px-6 py-5
-              "
+              className="flex shrink-0 items-center justify-between border-b border-emerald-900/10 bg-white/45 px-6 py-5 backdrop-blur-xl"
             >
               <div>
                 <div className="flex flex-wrap items-center gap-3">
@@ -1001,8 +934,8 @@ export default function AdminHistoryPage() {
                       text-xs font-medium
                       ${
                         selectedRegistration.type === "Import"
-                          ? "bg-blue-50 text-blue-700"
-                          : "bg-green-50 text-green-700"
+                        ? "border border-blue-200/70 bg-blue-100/65 text-blue-800"
+                        : "border border-emerald-200/70 bg-emerald-100/65 text-emerald-900"
                       }
                     `}
                   >
@@ -1022,15 +955,7 @@ export default function AdminHistoryPage() {
               <button
                 type="button"
                 onClick={() => setSelectedRegistration(null)}
-                className="
-                  flex h-10 w-10 shrink-0
-                  items-center justify-center
-                  rounded-full
-                  text-2xl text-gray-500
-                  transition
-                  hover:bg-gray-100
-                  hover:text-gray-800
-                "
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/80 bg-white/40 text-2xl text-gray-600 shadow-sm backdrop-blur-xl transition hover:border-emerald-300 hover:bg-emerald-50/80 hover:text-[#03471c]"
                 aria-label="Close registration details"
               >
                 ×
@@ -1038,7 +963,7 @@ export default function AdminHistoryPage() {
             </div>
 
             {/* SCROLLABLE POPUP BODY */}
-            <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6">
+            <div className="min-h-0 flex-1 overflow-y-auto bg-white/20 px-6 py-6">
               {/* COMMON DETAILS FOR IMPORT AND EXPORT */}
               <section className="mb-8">
                 <DetailSectionHeading title="Registration Information" />
@@ -1073,7 +998,7 @@ export default function AdminHistoryPage() {
                             )
                             }
                             disabled={savingStatusId === selectedRegistration.id}
-                            className="min-h-[44px] rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-[#03471c]"
+                            className="min-h-[44px] rounded-xl border border-white/80 bg-white/65 px-4 py-3 text-sm text-[#03471c] shadow-sm backdrop-blur-xl outline-none focus:border-emerald-600/60 focus:ring-2 focus:ring-emerald-500/10"
                         >
                             <option value="In-progress">In-progress</option>
                             <option value="Completed">Completed</option>
@@ -1099,14 +1024,14 @@ export default function AdminHistoryPage() {
                             disabled={savingStatusId === selectedRegistration.id}
                             title="Cancel editing"
                             aria-label="Cancel editing"
-                            className="flex h-9 w-9 items-center justify-center rounded-full text-red-600 transition hover:bg-red-100 disabled:opacity-50"
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-200/70 bg-white/45 text-emerald-800 shadow-sm backdrop-blur-xl transition hover:bg-emerald-100/80 disabled:opacity-50"
                         >
                             ×
                         </button>
                         </div>
                     ) : (
                         <div className="flex items-center gap-2">
-                        <div className="min-h-[44px] flex-1 rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-900">
+                        <div className="min-h-[44px] flex-1 rounded-xl border border-white/80 bg-white/45 px-4 py-3 text-sm text-gray-800 shadow-sm backdrop-blur-xl">
                             {selectedRegistration.status || "NA"}
                         </div>
 
@@ -1125,7 +1050,7 @@ export default function AdminHistoryPage() {
                             }}
                             title="Edit status"
                             aria-label="Edit status"
-                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-gray-500 transition hover:bg-green-50 hover:text-[#03471c]"
+                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/70 bg-white/35 text-[#03471c] shadow-sm backdrop-blur-xl transition hover:bg-emerald-50/80"
                         >
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -1183,17 +1108,11 @@ export default function AdminHistoryPage() {
             </div>
 
             {/* POPUP FOOTER */}
-            <div className="flex shrink-0 justify-end border-t border-gray-200 px-6 py-4">
+            <div className="flex shrink-0 justify-end border-t border-emerald-900/10 bg-white/45 px-6 py-4 backdrop-blur-xl">
               <button
                 type="button"
                 onClick={() => setSelectedRegistration(null)}
-                className="
-                  rounded-lg
-                  bg-[#03471c]
-                  px-5 py-2.5
-                  text-sm font-medium text-white
-                  transition hover:bg-[#046d2b]
-                "
+                className="rounded-xl border border-white/30 bg-emerald-800/85 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(3,71,28,0.16)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-[0_6px_18px_rgba(3,71,28,0.22)] active:translate-y-0"
               >
                 Close
               </button>
