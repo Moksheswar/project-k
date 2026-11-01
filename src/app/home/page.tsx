@@ -6,6 +6,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { useRouter } from "next/navigation";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import VideoCarousel from "../components/VideoCarousel";
 import CategoryCarousel from "../components/CategoryCarousel";
 import ProductCarousel from "../components/ProductCarousel";
@@ -40,6 +41,8 @@ export default function HomePage() {
       <CategoryCarousel />
 
       <ProductCarousel />
+
+      <Footer />
     </div>
   );
 }
