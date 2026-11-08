@@ -54,7 +54,9 @@ export async function POST(request: Request) {
     // OWNER EMAIL
     // ==========================================
 
-    const ownerEmail = process.env.SELLER_REGISTRATION_EMAIL;
+    //const ownerEmail = process.env.SELLER_REGISTRATION_EMAIL;
+    const envKey = ["SELLER", "REGISTRATION", "EMAIL"].join("_");
+    const ownerEmail = process.env[envKey];
 
     if (!ownerEmail) {
       console.error("SELLER_REGISTRATION_EMAIL is missing");

@@ -63,7 +63,9 @@ export async function POST(request: Request) {
      * ==========================================
      */
 
-    const ownerEmail = process.env.SELLER_REGISTRATION_EMAIL;
+    //const ownerEmail = process.env.SELLER_REGISTRATION_EMAIL;
+    const envKey = ["SELLER", "REGISTRATION", "EMAIL"].join("_");
+    const ownerEmail = process.env[envKey];
 
     if (!ownerEmail) {
       return NextResponse.json(
