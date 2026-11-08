@@ -10,6 +10,8 @@ import Footer from "../components/Footer";
 import VideoCarousel from "../components/VideoCarousel";
 import CategoryCarousel from "../components/CategoryCarousel";
 import ProductCarousel from "../components/ProductCarousel";
+import VideoCardsCarousel from "../components/VideoCardsCarousel";
+import CountriesMarquee from "../components/CountriesMarquee";
 
 export default function HomePage() {
   const [user, setUser] = useState<User | null>(null);
@@ -40,7 +42,11 @@ export default function HomePage() {
 
       <CategoryCarousel />
 
+      <VideoCardsCarousel />
+
       <ProductCarousel />
+
+      <CountriesMarquee />
 
       <Footer />
     </div>

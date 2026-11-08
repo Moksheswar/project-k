@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden border-t border-white/60 bg-gradient-to-r from-[#03471c] via-[#0b6034] to-[#03471c] text-[#03471c] shadow-[0_-4px_20px_rgba(3,71,28,0.12)]">
+    <footer id="contact" className="relative w-full overflow-hidden border-t border-white/60 bg-gradient-to-r from-[#03471c] via-[#0b6034] to-[#03471c] text-[#03471c] shadow-[0_-4px_20px_rgba(3,71,28,0.12)]">
 
       {/* Main glass-style background */}
       <div className="relative overflow-hidden bg-gradient-to-br from-green-50/95 via-green-50/90 to-emerald-100/95">

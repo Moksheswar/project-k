@@ -49,23 +49,22 @@ export default function Header({ user }: { user: User }) {
 
   
   useEffect(() => {
-    if (window.location.hash !== "#products") return;
+    const hash = window.location.hash.replace("#", "");
 
-    const scrollToProducts = () => {
-      const productsSection = document.getElementById("products");
+    if (hash !== "products" && hash !== "contact") return;
 
-      if (productsSection) {
-        productsSection.scrollIntoView({
+    const timeoutId = window.setTimeout(() => {
+      const section = document.getElementById(hash);
+
+      if (section) {
+        section.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
 
-        setActiveSection("products");
+        setActiveSection(hash);
       }
-    };
-
-    // Wait for the Home page content to render.
-    const timeoutId = window.setTimeout(scrollToProducts, 100);
+    }, 300);
 
     return () => window.clearTimeout(timeoutId);
   }, []);
@@ -113,20 +112,6 @@ export default function Header({ user }: { user: User }) {
         <div className="relative z-10 flex h-full items-center justify-between px-4 sm:px-6 lg:px-10">
           {/* Logo and navigation */}
           <div className="flex min-w-0 items-center gap-5 sm:gap-8">
-            {/* <Link
-              href="/home"
-              aria-label="Go to home"
-              className="flex shrink-0 items-center"
-            >
-              <Image
-                src="/images/Skyma_Logo-nobg.png"
-                alt="Skyma Logo"
-                width={150}
-                height={50}
-                priority
-                className="h-20 w-auto object-contain transition-transform duration-300 hover:scale-[1.03]"
-              />
-            </Link> */}
             
             <Link
               href="/home"
@@ -177,25 +162,6 @@ export default function Header({ user }: { user: User }) {
             >
               Home
             </Link>
-
-            {/* Products */}
-            {/* <Link
-              href="/home#products"
-              onClick={(event) => {
-                const isHomePage = window.location.pathname === "/home";
-                if (isHomePage) {
-                  event.preventDefault();
-                  scrollToSection("products");
-                }
-              }}
-              className={`${navLinkClass(activeSection === "products")} ${glowClass} ${
-                activeSection === "products"
-                  ? "drop-shadow-[0_0_8px_rgba(5,150,105,0.25)]"
-                  : ""
-              }`}
-            >
-              Products
-            </Link> */}
             
             {/* Products */}
             <Link
@@ -214,6 +180,30 @@ export default function Header({ user }: { user: User }) {
               }`}
             >
               Products
+            </Link>
+
+            {/* Contact Us */}
+            <Link
+              href="/home#contact"
+              onClick={(event) => {
+                if (window.location.pathname === "/home") {
+                  event.preventDefault();
+
+                  window.history.replaceState(null, "", "/home#contact");
+                  scrollToSection("contact");
+                }
+              }}
+              className={`${navLinkClass(activeSection === "contact")} ${glowClass}`}
+            >
+              Contact Us
+            </Link>
+
+            {/* About Us */}
+            <Link
+              href="/about-us"
+              className={`${navLinkClass(false)} ${glowClass}`}
+            >
+              About Us
             </Link>
 
             {/* Our Services — regular users only */}
